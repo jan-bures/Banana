@@ -106,13 +106,12 @@ public class BananaPlugin : BaseSpaceWarpPlugin
         Instance.Logger.LogDebug($"Blocking++: {_blocking}");
     }
 
-    internal static void StopBlocking(int count = 1)
+    internal static void StopBlocking()
     {
-        _blocking -= count;
-        if (_blocking == 0)
+        if (--_blocking == 0)
         {
             _blockerTransform.gameObject.SetActive(false);
         }
-        Instance.Logger.LogDebug($"Blocking--{count}: {_blocking}");
+        Instance.Logger.LogDebug($"Blocking--: {_blocking}");
     }
 }
