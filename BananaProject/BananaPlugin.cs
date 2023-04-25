@@ -75,7 +75,7 @@ public class BananaPlugin : BaseSpaceWarpPlugin
         };
 
         var blocker = blockerObject.AddComponent<Image>();
-        blocker.color = Color.gray;//clear;
+        blocker.color = Color.clear;
 
         _blockerTransform = blocker.GetComponent<RectTransform>();
         _blockerTransform.sizeDelta = new Vector2(50, 50);
