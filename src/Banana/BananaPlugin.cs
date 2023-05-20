@@ -5,7 +5,6 @@ using SpaceWarp;
 using SpaceWarp.API.Mods;
 using UnityEngine;
 using UnityEngine.UI;
-using Image = UnityEngine.UI.Image;
 
 // ReSharper disable MemberCanBePrivate.Global
 
@@ -75,7 +74,7 @@ public class BananaPlugin : BaseSpaceWarpPlugin
         };
 
         var blocker = blockerObject.AddComponent<Image>();
-        blocker.color = Color.clear;
+        blocker.color = Color.green;
 
         _blockerTransform = blocker.GetComponent<RectTransform>();
         _blockerTransform.sizeDelta = new Vector2(50, 50);
