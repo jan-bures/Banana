@@ -7,7 +7,7 @@
         <Description Label="Description of the mod">B.A.N.A.N.A. (Blocking All Non-Accessible Navigation Actions) is a plugin for blocking click-through on UITK and IMGUI mod windows.</Description>
         <RepositoryType Label="Type of source repository (git/svn)">git</RepositoryType>
         <RepositoryUrl Label="Source repository URL">https://github.com/jan-bures/Banana</RepositoryUrl>
-        <Version Label="Version of the mod">0.2.0</Version>
+        <Version Label="Version of the mod">0.1.1</Version>
         <VersionCheckUrl Label="URL to up-to-date swinfo.json">https://raw.githubusercontent.com/jan-bures/Banana/main/src/Banana/Banana.csproj</VersionCheckUrl>
         <Ksp2VersionMin Label="Lowest supported version of KSP 2">0.1.2</Ksp2VersionMin>
         <Ksp2VersionMax Label="Highest supported version of KSP 2">*</Ksp2VersionMax>

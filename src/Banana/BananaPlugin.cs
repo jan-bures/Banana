@@ -1,5 +1,6 @@
 ﻿using Banana.Patches;
 using BepInEx;
+using BepInEx.Logging;
 using HarmonyLib;
 using SpaceWarp;
 using SpaceWarp.API.Mods;
@@ -12,7 +13,6 @@ namespace Banana;
 
 [BepInPlugin(MyPluginInfo.PLUGIN_GUID, MyPluginInfo.PLUGIN_NAME, MyPluginInfo.PLUGIN_VERSION)]
 [BepInDependency(SpaceWarpPlugin.ModGuid, SpaceWarpPlugin.ModVer)]
-[HarmonyPatch]
 public class BananaPlugin : BaseSpaceWarpPlugin
 {
     // These are useful in case some other mod wants to add a dependency to this one
@@ -24,15 +24,15 @@ public class BananaPlugin : BaseSpaceWarpPlugin
 
     public static BananaPlugin Instance { get; set; }
 
+    internal new static ManualLogSource Logger;
+
     private bool _loaded;
     private static int _blocking;
 
-    /// <summary>
-    /// Runs when the mod is first initialized.
-    /// </summary>
-    public override void OnInitialized()
+    private void Awake()
     {
         Instance = this;
+        Logger = base.Logger;
 
         Harmony.CreateAndPatchAll(typeof(BananaPlugin).Assembly);
 
@@ -74,10 +74,11 @@ public class BananaPlugin : BaseSpaceWarpPlugin
         };
 
         var blocker = blockerObject.AddComponent<Image>();
-        blocker.color = Color.green;
+        blocker.color = Color.clear;
 
         _blockerTransform = blocker.GetComponent<RectTransform>();
-        _blockerTransform.sizeDelta = new Vector2(50, 50);
+        _blockerTransform.sizeDelta = new Vector2(150, 150);
+        _blockerTransform.gameObject.SetActive(false);
     }
 
     private void Update()
@@ -102,7 +103,7 @@ public class BananaPlugin : BaseSpaceWarpPlugin
         {
             _blockerTransform.gameObject.SetActive(true);
         }
-        Instance.Logger.LogDebug($"Blocking++: {_blocking}");
+        Logger.LogDebug($"Blocking++: {_blocking}");
     }
 
     internal static void StopBlocking()
@@ -111,6 +112,6 @@ public class BananaPlugin : BaseSpaceWarpPlugin
         {
             _blockerTransform.gameObject.SetActive(false);
         }
-        Instance.Logger.LogDebug($"Blocking--: {_blocking}");
+        Logger.LogDebug($"Blocking--: {_blocking}");
     }
 }
